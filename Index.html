@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Учёт продукции</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#1976d2">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>📦 Учёт продукции</h1>
+    <div id="month-total">0 ₽</div>
+    <div id="sync-status">Готов к работе</div>
+  </header>
+
+  <main>
+    <section id="add-section">
+      <h2>Добавить запись</h2>
+      <label>Товар:</label>
+      <select id="product-select">
+        <option value="">Выберите товар</option>
+      </select>
+
+      <label>Количество:</label>
+      <input type="number" id="qty-input" min="0" step="0.1" placeholder="1.0">
+      <div id="qty-quick-btns"></div>
+
+      <button type="button" id="voice-btn">🎤 Голосовой ввод количества</button>
+
+      <label id="comment-label">Комментарий:</label>
+      <input type="text" id="comment-input" autocomplete="off" placeholder="Комментарий (необязательно)">
+      <div id="comment-suggest"></div>
+
+      <button id="add-btn">Добавить</button>
+      <button id="add-shift-btn" type="button">Добавить смену (8 ч.)</button>
+
+      <h3>Сегодня</h3>
+      <ul id="today-list"></ul>
+    </section>
+
+    <!-- ... другие секции Вашей прошлой версии (товары, отчёты) ... -->
+
+    <section id="settings-section" hidden>
+      <h2>Настройки</h2>
+      <!-- ... другие блоки ... -->
+
+      <h3>Видимость элементов</h3>
+      <label><input type="checkbox" id="enable-voice" checked> Показывать голосовой ввод</label><br>
+      <label><input type="checkbox" id="enable-comments" checked> Показывать комментарии</label><br>
+      <button id="save-visibility-btn">Сохранить</button>
+
+      <!-- ... остальные блоки настроек ... -->
+    </section>
+  </main>
+
+  <nav>
+    <button data-page="add-section" data-active>📝</button>
+    <button data-page="products-section">📦</button>
+    <button data-page="reports-section">📊</button>
+    <button data-page="settings-section">⚙️</button>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>
