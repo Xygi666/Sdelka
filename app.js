@@ -1,4 +1,4 @@
-// ======= База =======
+// ============ IndexedDB ============
 const dbPromise = new Promise((resolve, reject) => {
   const open = indexedDB.open('productionDB', 1);
   open.onupgradeneeded = () => {
@@ -20,7 +20,7 @@ async function db(store, mode, cb) {
 }
 const $ = s => document.querySelector(s);
 
-// ======= Навигация =======
+// ============ Навигация ============
 document.querySelectorAll('nav button').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('section').forEach(sec => sec.hidden = true);
@@ -31,7 +31,7 @@ document.querySelectorAll('nav button').forEach(btn => {
   });
 });
 
-// ======= Компактные пресеты =======
+// ============ Быстрые кнопки количества ============
 function renderQtyQuickBtns() {
   const saved = localStorage.getItem('qtyPresets') || '10,20,50,100,200,300,400,500';
   const values = saved.split(',').map(v => +v.trim()).filter(Boolean);
@@ -60,7 +60,7 @@ function loadQtyPresetsUI() {
     localStorage.getItem('qtyPresets') || '10,20,50,100,200,300,400,500';
 }
 
-// ======= Видимость голосового ввода/комментариев =======
+// ============ Видимость голосового ввода/комментариев ============
 document.getElementById('save-visibility-btn').onclick = function () {
   localStorage.setItem('showVoice', document.getElementById('enable-voice').checked ? '1' : '');
   localStorage.setItem('showComments', document.getElementById('enable-comments').checked ? '1' : '');
@@ -83,7 +83,7 @@ function loadVisibilityPrefsUI() {
     localStorage.getItem('showComments') !== '' ? !!localStorage.getItem('showComments') : true;
 }
 
-// ======= Персонализация =======
+// ============ Персонализация ============
 function applyUIPrefs() {
   const prefs = JSON.parse(localStorage.getItem('uiPrefs') || '{}');
   ['add', 'products', 'reports', 'settings'].forEach(id => {
@@ -110,7 +110,7 @@ document.getElementById('save-ui-prefs-btn').onclick = function () {
   updateStatus('✅ Отображение разделов обновлено');
 };
 
-// ======= Режим одной руки =======
+// ============ Режим одной руки ============
 document.getElementById('save-one-hand-btn').onclick = function () {
   const enabled = document.getElementById('one-hand-mode').checked;
   localStorage.setItem('oneHandMode', enabled ? '1' : '');
@@ -126,7 +126,7 @@ function loadOneHandModeUI() {
   setOneHandMode(flag);
 }
 
-// ======= Оформление (темы) =======
+// ============ Темы ============
 const trendyColors = [
   { name: 'Синий', code: '#1976d2' },
   { name: 'Оранжевый', code: '#fd6f21' },
@@ -182,8 +182,23 @@ document.getElementById('save-theme-btn').onclick = function () {
   updateStatus('🎨 Оформление сохранено');
 };
 
-// ======= Остальной код (зарплата, смены, добавление записей, экспорт, график и т.д.) =======
-// (подставляется без изменений из вашей рабочей версии)
+// ======= Зарплата/смены/добавление записей/экспорт/график ==========
+// >>> Здесь вставляется весь основной функционал из вашей предыдущей версии (без изменений),
+// включая:
+// - loadSalarySettingsUI, save-salary
+// - loadShiftSettingsUI, save-shift, clear-shift, add-shift
+// - refreshProducts, loadToday, loadMonthSum, loadRecentEntries
+// - deleteProduct, deleteEntry
+// - добавление товара/записи
+// - автодополнение комментариев
+// - экспорт JSON/CSV/HTML
+// - updateSalaryStats
+// - drawProductChart
+// - voice-btn.onclick
+// - свайпы по today-list
+// - refreshAll()
+// - updateStatus()
+// - serviceWorker регистрация
 
 // ======= Init =======
 function customInitUI() {
